@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TrendingUp, ChevronRight, Flame, Eye } from 'lucide-react';
-import { getTrendingPosts, getBreakingPosts } from '../data/mockData';
+
 import { ArticleCard } from '../components/ui/ArticleCard';
 import { Sidebar } from '../components/ui/Sidebar';
 import { formatRelativeDate, formatViews } from '../utils';

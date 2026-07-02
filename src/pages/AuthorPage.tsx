@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ChevronRight, BookOpen, Eye, Calendar } from 'lucide-react';
-import { authors, posts } from '../data/mockData';
+
 import { ArticleCard } from '../components/ui/ArticleCard';
 import { Sidebar } from '../components/ui/Sidebar';
 import { formatDate, formatViews } from '../utils';

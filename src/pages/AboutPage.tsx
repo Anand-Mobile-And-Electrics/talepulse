@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, Globe, Shield, Zap, Award, Users, BarChart2 } from 'lucide-react';
-import { authors } from '../data/mockData';
 
 export const AboutPage: React.FC = () => (
   <div className="min-h-screen">

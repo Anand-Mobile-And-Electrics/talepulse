@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight, BookOpen, Eye } from 'lucide-react';
-import { authors, posts } from '../data/mockData';
 import { formatViews } from '../utils';
 
 export const AuthorsListPage: React.FC = () => {

@@ -7,7 +7,6 @@ import {
 } from 'lucide-react';
 import { useDarkMode } from '../../hooks/useDarkMode';
 import { useSearch } from '../../hooks/useSearch';
-import { categories } from '../../data/mockData';
 
 const NAV_ITEMS = [
   { label: 'News', href: '/category/world', hasDropdown: true },

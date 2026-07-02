@@ -4,7 +4,7 @@ import {
   Clock, Eye, Heart, Bookmark, BookmarkCheck, ChevronRight,
   MessageSquare, ThumbsUp, Send, AlertCircle
 } from 'lucide-react';
-import { posts, getRelatedPosts } from '../data/mockData';
+
 import { ArticleCard } from '../components/ui/ArticleCard';
 import { AdBanner } from '../components/ui/AdBanner';
 import { Sidebar } from '../components/ui/Sidebar';

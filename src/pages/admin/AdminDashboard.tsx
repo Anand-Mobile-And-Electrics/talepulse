@@ -4,7 +4,6 @@ import {
   FileText, Eye, Users, MessageSquare, TrendingUp, PlusCircle,
   ArrowUpRight, ArrowDownRight, Clock, Bookmark, Heart, Zap
 } from 'lucide-react';
-import { posts, authors } from '../../data/mockData';
 import { formatViews, formatRelativeDate } from '../../utils';
 
 const StatCard: React.FC<{

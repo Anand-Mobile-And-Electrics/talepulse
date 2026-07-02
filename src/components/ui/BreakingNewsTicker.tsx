@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Zap, ChevronRight } from 'lucide-react';
-import { breakingNews } from '../../data/mockData';
+
 
 export const BreakingNewsTicker: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);

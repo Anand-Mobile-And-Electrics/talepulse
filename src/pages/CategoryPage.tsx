@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ChevronRight, SlidersHorizontal, Grid3X3, List } from 'lucide-react';
-import { categories, getPostsByCategory, posts } from '../data/mockData';
+
 import { ArticleCard } from '../components/ui/ArticleCard';
 import { Sidebar } from '../components/ui/Sidebar';
 import { AdBanner } from '../components/ui/AdBanner';

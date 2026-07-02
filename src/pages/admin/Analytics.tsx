@@ -1,6 +1,5 @@
 import React from 'react';
 import { Eye, TrendingUp, Users, ArrowUpRight, BarChart2 } from 'lucide-react';
-import { posts } from '../../data/mockData';
 import { formatViews } from '../../utils';
 
 export const Analytics: React.FC = () => {

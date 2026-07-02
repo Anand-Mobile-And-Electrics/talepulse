@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Eye, Edit2, Trash2, Search, PlusCircle } from 'lucide-react';
-import { posts } from '../../data/mockData';
 import { formatRelativeDate, formatViews } from '../../utils';
 
 export const AllPosts: React.FC = () => {

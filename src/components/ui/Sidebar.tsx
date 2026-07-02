@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { TrendingUp, Tag, Users, Bell, ArrowRight } from 'lucide-react';
-import { getTrendingPosts } from '../../data/mockData';
-import { categories, tags, authors } from '../../data/mockData';
+
 import { AdBanner } from './AdBanner';
 import { formatViews } from '../../utils';
 

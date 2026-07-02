@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Save, Eye, Send, Image, Tag, X, ChevronDown, Bold, Italic, List, Link2, Quote, Heading1, Heading2 } from 'lucide-react';
-import { categories, tags } from '../../data/mockData';
 
 type PostStatus = 'draft' | 'published' | 'scheduled';
 

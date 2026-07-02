@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Bookmark, ChevronRight, Trash2 } from 'lucide-react';
 import { useBookmarks } from '../hooks/useBookmarks';
-import { posts } from '../data/mockData';
 import { ArticleCard } from '../components/ui/ArticleCard';
 
 export const BookmarksPage: React.FC = () => {

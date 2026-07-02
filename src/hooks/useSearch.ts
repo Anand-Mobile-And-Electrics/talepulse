@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react';
 import { Post } from '../types';
-import { searchPosts } from '../data/mockData';
 
 export const useSearch = () => {
   const [query, setQuery] = useState('');
