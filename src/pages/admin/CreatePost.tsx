@@ -9,7 +9,7 @@ interface Category {
 
 const CreatePost: React.FC = () => {
   const navigate = useNavigate();
-  const { id } = useParams(); // for edit mode
+  const { id } = useParams();
 
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ const CreatePost: React.FC = () => {
     author: "",
   });
 
-  /* ✅ Fetch Categories */
+  /* ---------------- FETCH CATEGORIES ---------------- */
   useEffect(() => {
     const fetchCategories = async () => {
       const { data, error } = await supabase
@@ -38,7 +38,7 @@ const CreatePost: React.FC = () => {
     fetchCategories();
   }, []);
 
-  /* ✅ If editing, fetch post */
+  /* ---------------- FETCH POST IF EDITING ---------------- */
   useEffect(() => {
     if (!id) return;
 
@@ -65,7 +65,7 @@ const CreatePost: React.FC = () => {
     fetchPost();
   }, [id]);
 
-  /* ✅ Auto generate slug */
+  /* ---------------- AUTO SLUG ---------------- */
   useEffect(() => {
     const slug = form.title
       .toLowerCase()
@@ -75,16 +75,14 @@ const CreatePost: React.FC = () => {
     setForm((prev) => ({ ...prev, slug }));
   }, [form.title]);
 
-  /* ✅ Handle Submit */
+  /* ---------------- HANDLE SUBMIT ---------------- */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     if (id) {
-      // UPDATE
       await supabase.from("posts").update(form).eq("id", id);
     } else {
-      // INSERT
       await supabase.from("posts").insert([
         { ...form, created_at: new Date().toISOString() },
       ]);
@@ -94,99 +92,166 @@ const CreatePost: React.FC = () => {
     navigate("/admin/posts");
   };
 
+  /* ---------------- UI ---------------- */
   return (
-    <div className="p-6 max-w-3xl">
-      <h1 className="text-2xl font-bold mb-6">
-        {id ? "Edit Post" : "Create Post"}
-      </h1>
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white p-6">
+      <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg">
 
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          placeholder="Title"
-          className="w-full p-3 border rounded"
-          value={form.title}
-          onChange={(e) =>
-            setForm({ ...form, title: e.target.value })
-          }
-          required
-        />
+        <h1 className="text-2xl font-bold mb-6">
+          {id ? "Edit Post" : "Create Post"}
+        </h1>
 
-        <input
-          type="text"
-          placeholder="Slug"
-          className="w-full p-3 border rounded bg-gray-100"
-          value={form.slug}
-          readOnly
-        />
+        <form onSubmit={handleSubmit} className="space-y-5">
 
-        <textarea
-          placeholder="Excerpt"
-          className="w-full p-3 border rounded"
-          value={form.excerpt}
-          onChange={(e) =>
-            setForm({ ...form, excerpt: e.target.value })
-          }
-        />
+          {/* Title */}
+          <div>
+            <label className="block mb-2 text-sm font-medium">Title</label>
+            <input
+              type="text"
+              placeholder="Enter post title"
+              className="w-full p-3 rounded-lg border
+              bg-gray-100 dark:bg-gray-700
+              text-gray-900 dark:text-white
+              border-gray-300 dark:border-gray-600
+              focus:outline-none focus:ring-2 focus:ring-[#1E3A8A]"
+              value={form.title}
+              onChange={(e) =>
+                setForm({ ...form, title: e.target.value })
+              }
+              required
+            />
+          </div>
 
-        <textarea
-          placeholder="Content (HTML allowed)"
-          className="w-full p-3 border rounded h-40"
-          value={form.content}
-          onChange={(e) =>
-            setForm({ ...form, content: e.target.value })
-          }
-        />
+          {/* Slug */}
+          <div>
+            <label className="block mb-2 text-sm font-medium">Slug</label>
+            <input
+              type="text"
+              className="w-full p-3 rounded-lg border
+              bg-gray-200 dark:bg-gray-600
+              text-gray-700 dark:text-gray-300
+              border-gray-300 dark:border-gray-600"
+              value={form.slug}
+              readOnly
+            />
+          </div>
 
-        <input
-          type="text"
-          placeholder="Image URL"
-          className="w-full p-3 border rounded"
-          value={form.image}
-          onChange={(e) =>
-            setForm({ ...form, image: e.target.value })
-          }
-        />
+          {/* Excerpt */}
+          <div>
+            <label className="block mb-2 text-sm font-medium">Excerpt</label>
+            <textarea
+              placeholder="Short description..."
+              className="w-full p-3 rounded-lg border
+              bg-gray-100 dark:bg-gray-700
+              text-gray-900 dark:text-white
+              border-gray-300 dark:border-gray-600
+              focus:outline-none focus:ring-2 focus:ring-[#1E3A8A]"
+              value={form.excerpt}
+              onChange={(e) =>
+                setForm({ ...form, excerpt: e.target.value })
+              }
+            />
+          </div>
 
-        <input
-          type="text"
-          placeholder="Author"
-          className="w-full p-3 border rounded"
-          value={form.author}
-          onChange={(e) =>
-            setForm({ ...form, author: e.target.value })
-          }
-          required
-        />
+          {/* Content */}
+          <div>
+            <label className="block mb-2 text-sm font-medium">
+              Content (HTML allowed)
+            </label>
+            <textarea
+              placeholder="Write full article content..."
+              className="w-full p-3 rounded-lg border h-40
+              bg-gray-100 dark:bg-gray-700
+              text-gray-900 dark:text-white
+              border-gray-300 dark:border-gray-600
+              focus:outline-none focus:ring-2 focus:ring-[#1E3A8A]"
+              value={form.content}
+              onChange={(e) =>
+                setForm({ ...form, content: e.target.value })
+              }
+            />
+          </div>
 
-        <select
-          className="w-full p-3 border rounded"
-          value={form.category}
-          onChange={(e) =>
-            setForm({ ...form, category: e.target.value })
-          }
-          required
-        >
-          <option value="">Select Category</option>
-          {categories.map((cat) => (
-            <option key={cat.id} value={cat.name}>
-              {cat.name}
-            </option>
-          ))}
-        </select>
+          {/* Image */}
+          <div>
+            <label className="block mb-2 text-sm font-medium">
+              Image URL
+            </label>
+            <input
+              type="text"
+              placeholder="https://example.com/image.jpg"
+              className="w-full p-3 rounded-lg border
+              bg-gray-100 dark:bg-gray-700
+              text-gray-900 dark:text-white
+              border-gray-300 dark:border-gray-600
+              focus:outline-none focus:ring-2 focus:ring-[#1E3A8A]"
+              value={form.image}
+              onChange={(e) =>
+                setForm({ ...form, image: e.target.value })
+              }
+            />
+          </div>
 
-        <button
-          type="submit"
-          disabled={loading}
-          className="bg-[#1E3A8A] text-white px-6 py-3 rounded font-semibold"
-        >
-          {loading
-            ? "Saving..."
-            : id
-            ? "Update Post"
-            : "Publish Post"}
-        </button>
-      </form>
+          {/* Author */}
+          <div>
+            <label className="block mb-2 text-sm font-medium">Author</label>
+            <input
+              type="text"
+              placeholder="Author name"
+              className="w-full p-3 rounded-lg border
+              bg-gray-100 dark:bg-gray-700
+              text-gray-900 dark:text-white
+              border-gray-300 dark:border-gray-600
+              focus:outline-none focus:ring-2 focus:ring-[#1E3A8A]"
+              value={form.author}
+              onChange={(e) =>
+                setForm({ ...form, author: e.target.value })
+              }
+              required
+            />
+          </div>
+
+          {/* Category */}
+          <div>
+            <label className="block mb-2 text-sm font-medium">
+              Select Category
+            </label>
+            <select
+              className="w-full p-3 rounded-lg border
+              bg-gray-100 dark:bg-gray-700
+              text-gray-900 dark:text-white
+              border-gray-300 dark:border-gray-600
+              focus:outline-none focus:ring-2 focus:ring-[#1E3A8A]"
+              value={form.category}
+              onChange={(e) =>
+                setForm({ ...form, category: e.target.value })
+              }
+              required
+            >
+              <option value="">Select Category</option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.name}>
+                  {cat.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-[#1E3A8A] hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+          >
+            {loading
+              ? "Saving..."
+              : id
+              ? "Update Post"
+              : "Publish Post"}
+          </button>
+
+        </form>
+      </div>
     </div>
   );
 };
