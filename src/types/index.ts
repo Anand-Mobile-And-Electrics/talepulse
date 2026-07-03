@@ -1,116 +1,65 @@
-export interface Author {
+export interface Post {
   id: string;
-  name: string;
+  title: string;
   slug: string;
-  avatar: string;
-  bio: string;
-  role: string;
-  twitter?: string;
-  linkedin?: string;
-  email?: string;
-  articlesCount: number;
-  joinedAt: string;
+  excerpt?: string;
+  content?: string;
+  image?: string;
+  category?: string;
+  category_id?: string;
+  author?: string;
+  created_at: string;
+  type?: string;
+  views?: number;
+  likes?: number;
 }
 
 export interface Category {
   id: string;
   name: string;
   slug: string;
-  description: string;
-  color: string;
-  icon: string;
-  count: number;
+  created_at?: string;
 }
 
 export interface Tag {
   id: string;
   name: string;
   slug: string;
-  count: number;
+  created_at?: string;
 }
 
-export type PostStatus = 'published' | 'draft' | 'scheduled' | 'archived';
-export type PostType = 'article' | 'story' | 'news' | 'opinion';
-
-export interface Post {
+export interface Author {
   id: string;
-  title: string;
+  name: string;
   slug: string;
-  excerpt: string;
-  content: string;
-  featuredImage: string;
-  category: Category;
-  tags: Tag[];
-  author: Author;
-  status: PostStatus;
-  type: PostType;
-  publishedAt: string;
-  updatedAt: string;
-  views: number;
-  likes: number;
-  bookmarks: number;
-  readingTime: number;
-  isBreaking?: boolean;
-  isFeatured?: boolean;
-  isTrending?: boolean;
-  isEditorPick?: boolean;
-  seo: {
-    title: string;
-    description: string;
-    keywords: string[];
-    canonicalUrl?: string;
-    ogImage?: string;
-  };
-  comments?: Comment[];
+  bio?: string;
+  avatar?: string;
+  created_at?: string;
 }
 
 export interface Comment {
   id: string;
-  postId: string;
-  author: string;
-  email: string;
-  avatar?: string;
+  post_id: string;
+  name: string;
+  email?: string;
   content: string;
-  createdAt: string;
-  parentId?: string;
-  replies?: Comment[];
-  likes: number;
+  approved?: boolean;
+  created_at: string;
 }
 
 export interface Advertisement {
   id: string;
-  placement: 'top-banner' | 'sidebar' | 'in-article' | 'after-article' | 'footer' | 'feed';
-  type: 'adsense' | 'custom' | 'placeholder';
-  adSlot?: string;
-  adClient?: string;
-  imageUrl?: string;
-  linkUrl?: string;
-  isActive: boolean;
+  title: string;
+  image_url?: string;
+  link?: string;
+  placement?: string;
+  active?: boolean;
+  created_at?: string;
 }
 
 export interface NewsletterSubscriber {
   id: string;
   email: string;
-  name?: string;
-  subscribedAt: string;
-  isActive: boolean;
-}
-
-export interface SearchResult {
-  posts: Post[];
-  total: number;
-  query: string;
-  page: number;
-  totalPages: number;
-}
-
-export interface AdminStats {
-  totalPosts: number;
-  totalViews: number;
-  totalUsers: number;
-  totalComments: number;
-  monthlyViews: number;
-  weeklyPosts: number;
-  totalBookmarks: number;
-  totalLikes: number;
+  subscribed?: boolean;
+  created_at: string;
 }

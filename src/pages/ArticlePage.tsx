@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
 import {
-  Clock,
-  Eye,
-  Heart,
+  AlertCircle,
   Bookmark,
   BookmarkCheck,
   ChevronRight,
-  AlertCircle,
+  Clock,
+  Eye,
+  Heart,
 } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
-import { ArticleCard } from "../components/ui/ArticleCard";
 import { AdBanner } from "../components/ui/AdBanner";
+import { ArticleCard } from "../components/ui/ArticleCard";
 import Sidebar from "../components/ui/Sidebar";
 
-import { formatDate, formatViews } from "../utils";
+import { supabase } from "@/lib/supabase";
 import { useBookmarks } from "../hooks/useBookmarks";
 import { Post } from "../types";
-import { supabase } from "@/lib/supabase";
+import { formatDate, formatViews } from "../utils";
 
 export const ArticlePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -119,9 +119,7 @@ export const ArticlePage: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* ARTICLE CONTENT */}
         <article className="lg:col-span-2">
-          <h1 className="text-3xl md:text-4xl font-black mb-4">
-            {post.title}
-          </h1>
+          <h1 className="text-3xl md:text-4xl font-black mb-4">{post.title}</h1>
 
           <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
             <span>{formatDate(post.created_at)}</span>
@@ -133,9 +131,9 @@ export const ArticlePage: React.FC = () => {
             </span>
           </div>
 
-          {post.featuredImage && (
+          {post.image && (
             <img
-              src={post.featuredImage}
+              src={post.image}
               alt={post.title}
               className="w-full h-64 md:h-96 object-cover rounded-xl mb-6"
             />
@@ -156,9 +154,7 @@ export const ArticlePage: React.FC = () => {
             <button
               onClick={handleLike}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg ${
-                liked
-                  ? "bg-red-600 text-white"
-                  : "bg-gray-100 dark:bg-gray-700"
+                liked ? "bg-red-600 text-white" : "bg-gray-100 dark:bg-gray-700"
               }`}
             >
               <Heart size={16} fill={liked ? "currentColor" : "none"} />

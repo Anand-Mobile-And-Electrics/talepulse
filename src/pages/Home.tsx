@@ -1,18 +1,11 @@
+import { ArrowRight, Clock, Eye, TrendingUp, Zap } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {
-  TrendingUp,
-  Zap,
-  Star,
-  ArrowRight,
-  Clock,
-  Eye,
-} from "lucide-react";
 
-import { BreakingNewsTicker } from "../components/ui/BreakingNewsTicker";
-import { ArticleCard } from "../components/ui/ArticleCard";
-import Sidebar from "../components/ui/Sidebar";
 import { AdBanner } from "../components/ui/AdBanner";
+import { ArticleCard } from "../components/ui/ArticleCard";
+import { BreakingNewsTicker } from "../components/ui/BreakingNewsTicker";
+import Sidebar from "../components/ui/Sidebar";
 
 import { supabase } from "@/lib/supabase";
 import { formatRelativeDate, formatViews } from "../utils";
@@ -108,7 +101,7 @@ export const Home: React.FC = () => {
                 >
                   <div className="w-20 h-16 bg-gray-200 rounded-lg overflow-hidden">
                     <img
-                      src={post.featuredImage}
+                      src={post.image}
                       className="w-full h-full object-cover"
                     />
                   </div>
