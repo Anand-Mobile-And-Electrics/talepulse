@@ -73,11 +73,11 @@ export const Footer: React.FC = () => {
             </p>
             <div className="flex items-center gap-3 mt-5">
               {[
-                { href: 'https://twitter.com/talepulse', label: '𝕏', hoverBg: 'hover:bg-[#1E3A8A]' },
-                { href: 'https://facebook.com/talepulse', label: 'f', hoverBg: 'hover:bg-[#1E3A8A]' },
-                { href: 'https://linkedin.com/company/talepulse', label: 'in', hoverBg: 'hover:bg-[#1E3A8A]' },
-                { href: 'https://youtube.com/talepulse', label: '▶', hoverBg: 'hover:bg-[#DC2626]' },
-                { href: 'https://instagram.com/talepulse', label: '◎', hoverBg: 'hover:bg-pink-600' },
+                { href: 'https://twitter.com/', label: '𝕏', hoverBg: 'hover:bg-[#1E3A8A]' },
+                { href: 'https://facebook.com/', label: 'f', hoverBg: 'hover:bg-[#1E3A8A]' },
+                { href: 'https://linkedin.com/company/', label: 'in', hoverBg: 'hover:bg-[#1E3A8A]' },
+                { href: 'https://youtube.com/', label: '▶', hoverBg: 'hover:bg-[#DC2626]' },
+                { href: 'https://instagram.com/', label: '◎', hoverBg: 'hover:bg-pink-600' },
               ].map(({ href, label, hoverBg }) => (
                 <a key={href} href={href} target="_blank" rel="noopener noreferrer"
                   className={`w-9 h-9 bg-gray-700 ${hoverBg} rounded-full flex items-center justify-center transition-colors text-sm font-bold`}>
