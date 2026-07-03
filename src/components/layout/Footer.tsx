@@ -88,15 +88,15 @@ export const Footer: React.FC = () => {
             <div className="mt-5 space-y-2 text-sm text-gray-400">
               <div className="flex items-center gap-2">
                 <MapPin size={14} className="text-[#DC2626] flex-shrink-0" />
-                <span>100 Media Drive, New York, NY 10001</span>
+                <span>India</span>
               </div>
               <div className="flex items-center gap-2">
                 <Mail size={14} className="text-[#DC2626] flex-shrink-0" />
-                <a href="mailto:news@talepulse.com" className="hover:text-white transition-colors">news@talepulse.com</a>
+                <a href="mailto:aks0317electronics@gmail.com" className="hover:text-white transition-colors">news@talepulse.com</a>
               </div>
               <div className="flex items-center gap-2">
                 <Phone size={14} className="text-[#DC2626] flex-shrink-0" />
-                <span>+1 (800) TALE-PULSE</span>
+                <span>TALE-PULSE</span>
               </div>
             </div>
           </div>
