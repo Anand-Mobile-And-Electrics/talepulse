@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "./components/layout/Navbar";
 import { Footer } from "./components/layout/Footer";
 
-// Pages (Public)
+// Public Pages
 import { Home } from "./pages/Home";
 import { ArticlePage } from "./pages/ArticlePage";
 import { CategoryPage } from "./pages/CategoryPage";
@@ -19,12 +19,14 @@ import { PrivacyPage } from "./pages/PrivacyPage";
 import { TermsPage } from "./pages/TermsPage";
 import { NewsletterPage } from "./pages/NewsletterPage";
 import { NotFoundPage } from "./pages/NotFoundPage";
+import LoginPage from "./pages/LoginPage";
 
 // Admin
 import AdminLayout from "./pages/admin/AdminLayout";
 import { AdminDashboard } from "./pages/admin/AdminDashboard";
-import { CreatePost } from "./pages/admin/CreatePost";
-import { AllPosts } from "./pages/admin/AllPosts";
+import CreatePost from "./pages/admin/CreatePost";
+import AllPosts from "./pages/admin/AllPosts";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 /* -------------------- BACK TO TOP -------------------- */
 const BackToTop: React.FC = () => {
@@ -80,7 +82,8 @@ function App() {
       <ScrollToTop />
 
       <Routes>
-        {/* PUBLIC ROUTES */}
+        {/* ================= PUBLIC ROUTES ================= */}
+
         <Route
           path="/"
           element={
@@ -198,23 +201,29 @@ function App() {
           }
         />
 
+        <Route path="/newsletter" element={<NewsletterPage />} />
+
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* ================= ADMIN ROUTES (PROTECTED) ================= */}
+
         <Route
-          path="/newsletter"
-          element={<NewsletterPage />}
-        />
+          path="/admin/*"
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<AdminDashboard />} />
+          <Route path="create" element={<CreatePost />} />
+          <Route path="edit/:id" element={<CreatePost />} />
+          <Route path="posts" element={<AllPosts />} />
+          <Route path="stories" element={<AllPosts />} />
+        </Route>
 
-       /*
-<Route path="/admin" element={<AdminLayout />}>
-  <Route index element={<AdminDashboard />} />
-  <Route path="create" element={<CreatePost />} />
-  <Route path="edit/:id" element={<CreatePost />} />
-  <Route path="posts" element={<AllPosts />} />
-  <Route path="stories" element={<AllPosts />} />
-</Route>
-*/
-        
+        {/* ================= 404 ================= */}
 
-        {/* 404 */}
         <Route
           path="*"
           element={
