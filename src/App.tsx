@@ -13,8 +13,8 @@ import { Footer } from "./components/layout/Footer";
 /* ================= PUBLIC PAGES ================= */
 import { Home } from "./pages/Home";
 import { ArticlePage } from "./pages/ArticlePage";
-import { CategoryPage } from "./pages/CategoryPage";
-import { SearchPage } from "./pages/SearchPage";
+import CategoryPage from "./pages/CategoryPage";
+import SearchPage from "./pages/SearchPage";
 import { AuthorPage } from "./pages/AuthorPage";
 import { BookmarksPage } from "./pages/BookmarksPage";
 import { TrendingPage } from "./pages/TrendingPage";
