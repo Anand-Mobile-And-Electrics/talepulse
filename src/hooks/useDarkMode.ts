@@ -1,23 +1,32 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from "react";
 
 export const useDarkMode = () => {
-  const [isDark, setIsDark] = useState(() => {
-    const stored = localStorage.getItem('talepulse_theme');
-    if (stored) return stored === 'dark';
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const [isDark, setIsDark] = useState<boolean>(() => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) {
+      return savedTheme === "dark";
+    }
+
+    // Detect system preference
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
   });
 
   useEffect(() => {
     const root = document.documentElement;
+
     if (isDark) {
-      root.classList.add('dark');
+      root.classList.add("dark");
+      localStorage.setItem("theme", "dark");
     } else {
-      root.classList.remove('dark');
+      root.classList.remove("dark");
+      localStorage.setItem("theme", "light");
     }
-    localStorage.setItem('talepulse_theme', isDark ? 'dark' : 'light');
   }, [isDark]);
 
-  const toggleDarkMode = () => setIsDark(prev => !prev);
+  const toggleDarkMode = () => {
+    setIsDark((prev) => !prev);
+  };
 
   return { isDark, toggleDarkMode };
 };

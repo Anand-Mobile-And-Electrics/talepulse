@@ -25,10 +25,18 @@ export const formatRelativeDate = (dateString: string): string => {
   return formatDate(dateString);
 };
 
-export const formatViews = (views: number): string => {
-  if (views >= 1000000) return `${(views / 1000000).toFixed(1)}M`;
-  if (views >= 1000) return `${(views / 1000).toFixed(1)}K`;
-  return views.toString();
+export const formatViews = (views?: number | null): string => {
+  const safeViews = views ?? 0;
+
+  if (safeViews >= 1000000) {
+    return (safeViews / 1000000).toFixed(1) + "M";
+  }
+
+  if (safeViews >= 1000) {
+    return (safeViews / 1000).toFixed(1) + "K";
+  }
+
+  return safeViews.toString();
 };
 
 export const slugify = (text: string): string => {

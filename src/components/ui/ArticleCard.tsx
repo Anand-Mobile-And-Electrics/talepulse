@@ -57,7 +57,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
               <span>{formatRelativeDate(post.publishedAt)}</span>
               <span>·</span>
               <span>{post.readingTime} min read</span>
-              <span className="flex items-center gap-1"><Eye size={12} />{formatViews(post.views)}</span>
+              <span className="flex items-center gap-1"><Eye size={12} />{formatViews(post.views ?? 0)}</span>
             </div>
           </div>
         </Link>
@@ -94,7 +94,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
             <span>{formatRelativeDate(post.publishedAt)}</span>
             <span>·</span>
             <span className="flex items-center gap-1"><Clock size={10} />{post.readingTime}m</span>
-            <span className="flex items-center gap-1"><Eye size={10} />{formatViews(post.views)}</span>
+            <span className="flex items-center gap-1"><Eye size={10} />{formatViews(post.views ?? 0)}</span>
           </div>
         </div>
       </article>
@@ -142,7 +142,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
             <h3 className="text-base font-bold text-white line-clamp-2 font-['Manrope'] leading-tight">{post.title}</h3>
             <div className="flex items-center gap-3 mt-2 text-xs text-gray-300">
               <span>{formatRelativeDate(post.publishedAt)}</span>
-              <span className="flex items-center gap-1"><Eye size={10} />{formatViews(post.views)}</span>
+              <span className="flex items-center gap-1"><Eye size={10} />{formatViews(post.views ?? 0)}</span>
             </div>
           </div>
         </Link>
@@ -203,7 +203,7 @@ export const ArticleCard: React.FC<ArticleCardProps> = ({
         <div className="flex items-center justify-between mt-3 pt-3 border-t border-gray-100 dark:border-gray-700">
           <div className="flex items-center gap-3 text-xs text-gray-400">
             <span className="flex items-center gap-1"><Clock size={12} />{post.readingTime} min</span>
-            <span className="flex items-center gap-1"><Eye size={12} />{formatViews(post.views)}</span>
+            <span className="flex items-center gap-1"><Eye size={12} />{formatViews(post.views ?? 0)}</span>
             <span className="flex items-center gap-1"><Heart size={12} />{formatViews(post.likes)}</span>
           </div>
           <button

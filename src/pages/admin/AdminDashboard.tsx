@@ -9,7 +9,7 @@ interface Post {
   created_at: string;
 }
 
-export const AdminDashboard: React.FC = () => {
+const AdminDashboard: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -33,29 +33,39 @@ export const AdminDashboard: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div className="p-6">Loading dashboard...</div>;
+    return (
+      <div className="p-6 text-gray-500 dark:text-gray-400">
+        Loading dashboard...
+      </div>
+    );
   }
 
   return (
-    <div className="p-6">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white p-6">
       <h1 className="text-2xl font-bold mb-6">Admin Dashboard</h1>
 
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
-        <div className="bg-white shadow rounded-xl p-5">
-          <h2 className="text-gray-500 text-sm">Total Posts</h2>
+        <div className="bg-white dark:bg-gray-800 shadow rounded-xl p-5 transition">
+          <h2 className="text-gray-500 dark:text-gray-400 text-sm">
+            Total Posts
+          </h2>
           <p className="text-3xl font-bold">{posts.length}</p>
         </div>
 
-        <div className="bg-white shadow rounded-xl p-5">
-          <h2 className="text-gray-500 text-sm">Categories</h2>
+        <div className="bg-white dark:bg-gray-800 shadow rounded-xl p-5 transition">
+          <h2 className="text-gray-500 dark:text-gray-400 text-sm">
+            Categories
+          </h2>
           <p className="text-3xl font-bold">
             {new Set(posts.map((p) => p.category)).size}
           </p>
         </div>
 
-        <div className="bg-white shadow rounded-xl p-5">
-          <h2 className="text-gray-500 text-sm">Latest Post</h2>
+        <div className="bg-white dark:bg-gray-800 shadow rounded-xl p-5 transition">
+          <h2 className="text-gray-500 dark:text-gray-400 text-sm">
+            Latest Post
+          </h2>
           <p className="text-sm font-semibold">
             {posts[0]?.title || "No posts yet"}
           </p>
@@ -63,22 +73,24 @@ export const AdminDashboard: React.FC = () => {
       </div>
 
       {/* Recent Posts */}
-      <div className="bg-white shadow rounded-xl p-5">
+      <div className="bg-white dark:bg-gray-800 shadow rounded-xl p-5 transition">
         <h2 className="text-lg font-semibold mb-4">Recent Posts</h2>
 
         {posts.length === 0 ? (
-          <p>No posts found.</p>
+          <p className="text-gray-500 dark:text-gray-400">
+            No posts found.
+          </p>
         ) : (
           <ul className="space-y-3">
             {posts.slice(0, 5).map((post) => (
               <li
                 key={post.id}
-                className="flex justify-between items-center border-b pb-2"
+                className="flex justify-between items-center border-b border-gray-200 dark:border-gray-700 pb-2"
               >
                 <span>{post.title}</span>
                 <Link
                   to={`/admin/edit/${post.id}`}
-                  className="text-blue-600 text-sm"
+                  className="text-blue-600 dark:text-blue-400 text-sm hover:underline"
                 >
                   Edit
                 </Link>
