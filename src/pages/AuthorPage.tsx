@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { ChevronRight, BookOpen, Eye, Calendar } from 'lucide-react';
 
 import { ArticleCard } from '../components/ui/ArticleCard';
-import { Sidebar } from '../components/ui/Sidebar';
+import Sidebar from '../components/ui/Sidebar';
 import { formatDate, formatViews } from '../utils';
 
 export const AuthorPage: React.FC = () => {

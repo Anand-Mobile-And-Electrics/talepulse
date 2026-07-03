@@ -11,7 +11,7 @@ import {
 
 import { BreakingNewsTicker } from "../components/ui/BreakingNewsTicker";
 import { ArticleCard } from "../components/ui/ArticleCard";
-import { Sidebar } from "../components/ui/Sidebar";
+import Sidebar from "../components/ui/Sidebar";
 import { AdBanner } from "../components/ui/AdBanner";
 
 import { supabase } from "@/lib/supabase";

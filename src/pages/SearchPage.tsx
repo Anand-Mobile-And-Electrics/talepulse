@@ -3,7 +3,7 @@ import { useSearchParams, Link } from 'react-router-dom';
 import { Search, X, ChevronRight } from 'lucide-react';
 import { useSearch } from '../hooks/useSearch';
 import { ArticleCard } from '../components/ui/ArticleCard';
-import { Sidebar } from '../components/ui/Sidebar';
+import Sidebar from '../components/ui/Sidebar';
 
 export const SearchPage: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
